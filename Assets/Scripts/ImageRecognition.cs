@@ -54,11 +54,15 @@ public class ImageRecognition : MonoBehaviour
         {
             if (trackedImage.trackingState != TrackingState.None && trackedImage.trackingState != TrackingState.Limited)
                 updateImage(trackedImage);
-            else
+            else 
+            {
+                Debug.Log("false 1");
                 spawnedPokemon[currentPokemonName].SetActive(false);
+            }
         }
         foreach (ARTrackedImage trackedImage in args.removed)
         {
+            Debug.Log("false 2");
             spawnedPokemon[currentPokemonName].SetActive(false);
         }
     }
@@ -71,12 +75,14 @@ public class ImageRecognition : MonoBehaviour
         pokemon.transform.position = position;
         pokemon.transform.rotation = rotation;
         pokemon.SetActive(true);
+        Debug.Log("true 1");
 
-        foreach(GameObject go in spawnedPokemon.Values)
+        foreach (GameObject go in spawnedPokemon.Values)
         {
             if(go.name != currentPokemonName)
             {
                 go.SetActive(false);
+                Debug.Log("false 3");
             }
         }
     }
